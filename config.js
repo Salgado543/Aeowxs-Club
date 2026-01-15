@@ -1,0 +1,70 @@
+import { watchFile, unwatchFile } from 'fs' 
+import chalk from 'chalk'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+import cheerio from 'cheerio'
+import fetch from 'node-fetch'
+import axios from 'axios'
+import moment from 'moment-timezone' 
+
+global.botNumber = '' //Ejemplo: 51927238856
+
+global.owner = [
+   ['5217341011505', 'Gio', true],
+   ['51927238856', 'Dev Criss 🇦🇱', true],
+   ['15796761978', '@Gio', true]
+]
+
+global.own = ['527341011505']
+global.ownname = 'Gio'
+global.ownp = 'Mexico 🇲🇽'
+
+global.mods = ['']
+global.prems = ['']
+
+global.packname = 'Gio Bot MD'
+global.botname = 'Gio Bot - MD'
+global.wm = 'I′m Gio Bot - MD'
+global.wm2 = '@I′m Gio ステカー'
+global.author = '𝖲𝗁⍺𝖽ᦅ𝗐′𝗌 𝖢𝗅𝗎𝖻'
+global.dev = '𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 Gioᦅqz'
+global.namebot = 'Gio'
+global.nameai = 'Gio Ai'
+global.textbot = 'GIO BOT MD'
+global.vs = '1.0.0'
+global.emotg = '⚜️'
+global.msgtagall = '𝐆𝐈𝐎 𝐁𝐎𝐓 𝐓𝐄 𝐈𝐍𝐕𝐎𝐂𝐀 👻'
+global.sessions = 'Session'
+global.jadi = 'JadiBots'
+global.moneda = 'ShadowCoins 🪙'
+
+
+global.catalogo = fs.readFileSync('./media/catalogo.jpg')
+
+
+global.grupo = 'https://chat.whatsapp.com/IJyN3cklID5HVKU3nAi0XL?mode=ac_t'
+global.comu = 'https://chat.whatsapp.com/Er5zgBnAW9A8rfGaXGIvhI?mode=ac_t'
+global.channel = 'https://whatsapp.com/channel/0029VauTE8AHltY1muYir31n'
+global.ig = 'https://www.instagram.com/ltegio.sdo'
+
+
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '𝖲𝗁⍺𝖽ᦅ𝗐′𝗌  乂  𝖢𝗅𝗎𝖻', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+
+
+global.cheerio = cheerio
+global.fs = fs
+global.fetch = fetch
+global.axios = axios
+global.moment = moment        
+
+
+global.multiplier = 69 
+global.maxwarn = '3'
+
+
+let file = fileURLToPath(import.meta.url)
+watchFile(file, () => {
+  unwatchFile(file)
+  console.log(chalk.redBright("Update 'config.js'"))
+  import(`${file}?update=${Date.now()}`)
+})

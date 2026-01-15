@@ -1,0 +1,37 @@
+import { webp2mp4 } from '../lib/webp2mp4.js';
+import { ffmpeg } from '../lib/converter.js';
+
+const handler = async (m, { conn, usedPrefix, command }) => {
+
+  if (!m.quoted) return conn.reply(m.chat, `*${emojis} Responda a un sticker animado para convertir en video.*`, m);
+  const mime = m.quoted.mimetype || '';
+  
+  if (!/webp/.test(mime)) return conn.reply(m.chat, `*${emojis} Responda a un sticker animado para convertir en video.*`, m);
+  
+  const media = await m.quoted.download();
+  if (!media) return conn.reply(m.chat, '*✖️ No se pudo descargar el archivo. Intente de nuevo.*', m);
+  
+  let out = Buffer.alloc(0);
+
+  await m.react('⌛');
+
+  if (/webp/.test(mime)) {
+    out = await webp2mp4(media);
+  } else if (/audio/.test(mime)) {
+    out = await ffmpeg(media, [
+      '-filter_complex', 'color',
+      '-pix_fmt', 'yuv420p',
+      '-crf', '51',
+      '-c:a', 'copy',
+      '-shortest',
+    ], 'mp3', 'mp4');
+  }
+
+  await conn.sendFile(m.chat, out, 'video.mp4', '*Su Video*', m);
+};
+
+handler.help = ['tovideo'];
+handler.tags = ['converter'];
+handler.command = ['tovideo', 'tovid', 'tomp4', 'mp4', 'togif'];
+
+export default handler;
