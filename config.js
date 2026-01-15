@@ -7,50 +7,83 @@ import fetch from 'node-fetch'
 import axios from 'axios'
 import moment from 'moment-timezone' 
 
-global.botNumber = '' //Ejemplo: 51927238856
+// Número del bot (déjalo vacío, se llena solo al escanear el QR)
+global.botNumber = '' 
 
+// 👑 dueños del Bot
 global.owner = [
-   ['5217341011505', 'Gio', true],
-   ['51927238856', 'Dev Criss 🇦🇱', true],
-   ['15796761978', '@Gio', true]
+  // [Numero, Nombre, esCreador?]
+  ['5217341011505', 'Gio', true],  // 🚩 TU NÚMERO PRINCIPAL (Ya configurado)
+  // Si quieres agregar a otro admin, copia la línea de arriba y cambia el número
 ]
 
-global.own = ['527341011505']
+// Otras configuraciones de propietario
+global.own = ['5217341011505'] // Tu número para otros comandos internos
 global.ownname = 'Gio'
 global.ownp = 'Mexico 🇲🇽'
 
-global.mods = ['']
-global.prems = ['']
+// Listas de moderadores y premium (puedes dejarlas vacías por ahora)
+global.mods = []
+global.prems = []
 
-global.packname = 'Gio Bot MD'
-global.botname = 'Gio Bot - MD'
-global.wm = 'I′m Gio Bot - MD'
-global.wm2 = '@I′m Gio ステカー'
-global.author = '𝖲𝗁⍺𝖽ᦅ𝗐′𝗌 𝖢𝗅𝗎𝖻'
-global.dev = '𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 Gioᦅqz'
-global.namebot = 'Gio'
-global.nameai = 'Gio Ai'
-global.textbot = 'GIO BOT MD'
+// 🏷️ Marca de agua y Nombres
+global.packname = 'Aeowxs Club'    // Nombre del paquete de stickers
+global.author = 'Gio'              // Autor de los stickers
+global.botname = 'Aeowxs - Bot'    // Nombre visible del Bot
+global.wm = 'Aeowxs Club - Bot'    // Marca de agua en textos
+global.wm2 = '@Gio'                // Marca secundaria
+global.dev = 'Powered by Gio'      // Créditos del desarrollador
+global.namebot = 'Aeowxs'
+global.nameai = 'Aeowxs AI'
+global.textbot = 'AEOWXS CLUB'
 global.vs = '1.0.0'
-global.emotg = '⚜️'
-global.msgtagall = '𝐆𝐈𝐎 𝐁𝐎𝐓 𝐓𝐄 𝐈𝐍𝐕𝐎𝐂𝐀 👻'
-global.sessions = 'Session'
-global.jadi = 'JadiBots'
-global.moneda = 'ShadowCoins 🪙'
+global.emotg = '⚜️'                // Emoji decorativo principal
+global.msgtagall = '⚠️ ATENCIÓN GRUPO ⚠️' // Título para menciones masivas
+global.sessions = 'Session'        // Carpeta de sesión (NO CAMBIAR)
+global.jadi = 'JadiBots'           // Carpeta de sub-bots
+global.moneda = 'AeowxCoins 🪙'    // Nombre de tu moneda virtual
 
 
-global.catalogo = fs.readFileSync('./media/catalogo.jpg')
+// 🖼️ Imágenes y Miniaturas
+// Asegúrate de que este archivo exista en tu carpeta media, o cambia la ruta
+try {
+    global.catalogo = fs.readFileSync('./media/catalogo.jpg')
+} catch (e) {
+    // Si no encuentra la imagen, no da error, solo avisa
+    console.log('⚠️ No se encontró ./media/catalogo.jpg, usando valor por defecto.')
+    global.catalogo = fs.readFileSync('./media/menu.jpg') // Intenta usar menu.jpg si existe
+}
 
 
-global.grupo = 'https://chat.whatsapp.com/IJyN3cklID5HVKU3nAi0XL?mode=ac_t'
-global.comu = 'https://chat.whatsapp.com/Er5zgBnAW9A8rfGaXGIvhI?mode=ac_t'
-global.channel = 'https://whatsapp.com/channel/0029VauTE8AHltY1muYir31n'
-global.ig = 'https://www.instagram.com/ltegio.sdo'
+// 🔗 ENLACES REDES SOCIALES (PON AQUÍ TUS LINKS)
+global.grupo = 'https://chat.whatsapp.com/TU_LINK_DE_GRUPO'        // ⬅️ Pon aquí el link de tu grupo
+global.comu = 'https://chat.whatsapp.com/TU_LINK_DE_COMUNIDAD'     // ⬅️ Pon aquí el link de tu comunidad
+global.channel = 'https://whatsapp.com/channel/TU_CANAL'           // ⬅️ Pon aquí tu canal de WhatsApp
+global.ig = 'https://www.instagram.com/TU_USUARIO'                 // ⬅️ Pon aquí tu Instagram
 
 
-global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "543876577197-120363317332020195@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '𝖲𝗁⍺𝖽ᦅ𝗐′𝗌  乂  𝖢𝗅𝗎𝖻', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+// Configuración visual de mensajes (Fake Reply)
+global.estilo = { 
+    key: { 
+        fromMe: false, 
+        participant: `0@s.whatsapp.net`, 
+        ...(false ? { remoteJid: "5217341011505-120363317332020195@g.us" } : {}) 
+    }, 
+    message: { 
+        orderMessage: { 
+            itemCount : 999, 
+            status: 1, 
+            surface : 1, 
+            message: 'Aeowxs Club ⚜️', // Texto que aparece en la "cita" falsa
+            orderTitle: 'Gio Bot', 
+            thumbnail: global.catalogo, 
+            sellerJid: '0@s.whatsapp.net'
+        }
+    }
+}
 
 
+// Librerías globales (No tocar)
 global.cheerio = cheerio
 global.fs = fs
 global.fetch = fetch
@@ -58,10 +91,12 @@ global.axios = axios
 global.moment = moment        
 
 
+// Configuraciones de RPG/Juegos
 global.multiplier = 69 
 global.maxwarn = '3'
 
 
+// Auto-actualización de este archivo (No tocar)
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
